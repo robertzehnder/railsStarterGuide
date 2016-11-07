@@ -4,7 +4,7 @@ Rails App Checklist
 
 1. Create it: rails new appName -d postgresql
 --
---
+
 
 	***Check: Run “rails server” to see if the welcome to rails 	message shows at localhost:3000
 
