@@ -29,7 +29,7 @@ Rails App Checklist
 — Repeat steps 3-5 as many times as necessary — 
 
 6. Create seed data: An example below:
-	'''
+	```
 	House.destroy_all
 	Character.destroy_all
 
@@ -43,7 +43,7 @@ Rails App Checklist
 	character3 = Character.create(name: "Omar", indulgence: "violence", house: house1)
 
 	character4 = Character.create(name: "Jimmy", indulgence: "alcohol", house: house2)
-	'''
+	```
 
 	*** Make sure that you do ClassName.create not Class name.new in the seed data or else it won’t work.
 
