@@ -6,13 +6,14 @@ Rails App Checklist
 -
 
 	***Check: Run “rails server” to see if the welcome to rails 	message shows at localhost:3000
-
+-
 2. Make your database: created dbName_development
 --
 	a. The name_development is a part of rails conventions
 
 	***Check: get into postgres with “psql,” the connect to your database with “\c db_name”
-
+	
+--
 3. Create controller: rails generate controller controllerNames
 --
 	a. make sure the controller name is plural to follow rails conventions
