@@ -3,34 +3,38 @@
 Rails App Checklist
 
 1. Create it: rails new appName -d postgresql
---
-
+-
 
 	***Check: Run “rails server” to see if the welcome to rails 	message shows at localhost:3000
 
 2. Make your database: created dbName_development
+--
 	a. The name_development is a part of rails conventions
 
 	***Check: get into postgres with “psql,” the connect to your database with “\c db_name”
 
 3. Create controller: rails generate controller controllerNames
+--
 	a. make sure the controller name is plural to follow rails conventions
 
 	***Check: navigate to app >> controllers to see if your controller is there
 
 4. Create Model: rails generate model modelName field1Name:dataType field2Name:dataType…etc.
+--
 		a. Model names are singular
 		b. If creating a foreign key, do “modelName:references”
 
 	***Check: Navigate to db >> migrate to see if there is a file, click on it to see if it contains your schema
 
 5. Migrate your database: rake db:migrate
+--
 
 	***Check: Navigate to db >> schema.rb to see if your 	schema was loaded in
 
 — Repeat steps 3-5 as many times as necessary — 
 
 6. Create seed data: An example below:
+--
 	```
 	House.destroy_all
 	Character.destroy_all
@@ -50,10 +54,12 @@ Rails App Checklist
 	*** Make sure that you do ClassName.create not Class name.new in the seed data or else it won’t work.
 
 7. Seed your database: rake db:seed
+--
 	
 	***Check: open postgres, then open your database. do a “Select * from table_name;” to see if your data made it over. 
 
 8. Modify Your Routes to Reflect Your Controllers: Add the following for your routes file…
+--
 
 	resources :controllerName (make sure it ends with an “s” for convention purposes. Repeat as necessary for each of your models.
 
