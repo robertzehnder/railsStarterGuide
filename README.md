@@ -35,7 +35,7 @@ Rails App Checklist
 
 6. Create seed data: An example below:
 --
-	```
+	
 	House.destroy_all
 	Character.destroy_all
 
@@ -49,7 +49,7 @@ Rails App Checklist
 	character3 = Character.create(name: "Omar", indulgence: "violence", house: house1)
 
 	character4 = Character.create(name: "Jimmy", indulgence: "alcohol", house: house2)
-	```
+	
 
 	*** Make sure that you do ClassName.create not Class name.new in the seed data or else it won’t work.
 
@@ -66,8 +66,10 @@ Rails App Checklist
 	***Check: add “root “modelname#index” to have the home page default to this index view for this controller >> Helps to set a location to create a test page in the next step
 
 9. Create Home Page View: Make a hello world view for the index page by modifying the index.html.erb view under your first model’s views folder
+--
 
 10. View your routes: Run the “rake routes” command in terminal
+--
 
 	— New Page Process —
 
@@ -84,6 +86,7 @@ Rails App Checklist
 
 
 11. Create a home page for your index view using the new page process: Modify the page to however you like to display all the options
+--
     1. Need to create an index action in your controller
     2. Modify the view
 
@@ -104,6 +107,7 @@ Rails App Checklist
 	This should lead you to an error that asks for your show page view
 
 12. Create the Show Page
+--
 
 	— New Page Process —
 
@@ -128,6 +132,7 @@ Rails App Checklist
 	— End New Page Process —
 
 13. Create the edit page
+--
 
 	— New Page Process —
 
@@ -185,6 +190,7 @@ Rails App Checklist
 	*Note: You need to add the private method because only the controller should be able to modify data
 
 14. Create the Create Page: 
+--
 
 	— New Page Process —
 
@@ -231,6 +237,7 @@ Rails App Checklist
 	this is capturing the @house value which was generated in the form. It is then creating a new object and permanently altering the database, which is why it was banged
 
 15. Create the delete method
+--
 
 Add this where applicable :)
 
