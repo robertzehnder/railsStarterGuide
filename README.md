@@ -270,3 +270,11 @@ def destroy
 <%= link_to 'Delete House', house_path(@house),
               method: :delete,
               data: { confirm: 'Are you sure?' } %>
+
+Appendix
+-
+To update a table that was already created, take the following steps:
+
+1. Open Terminal
+2. rails generate migration add_migrationName_to_modelName newFieldName:dataType
+3. rake db:migrate
