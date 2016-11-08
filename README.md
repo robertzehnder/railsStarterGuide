@@ -1,88 +1,108 @@
 # railsStarterGuide
 
+> Note: there will be some generic things like app_name or model_name. Make sure that your app uses YOUR domain and not these generic names used in this guide
+
 Rails App Checklist
 
-1. Create it: rails new appName -d postgresql
--
-
-	***Check: Run “rails server” to see if the welcome to rails 	message shows at localhost:3000
-
-2. Make your database: created dbName_development
+1. Create it: `$ rails new appName -d postgresql`
 --
-	a. The name_development is a part of rails conventions
 
-	***Check: get into postgres with “psql,” the connect to your database with “\c db_name”
-	
-3. Create controller: rails generate controller controllerNames
+	***Check: Run `$ rails server` to see if the welcome to rails 	message shows at `http://localhost:3000`
+
+2. Make your database: `$ rake db:create` or `$ rails db:create`
 --
-	a. make sure the controller name is plural to follow rails conventions
+> This will create a database called `app_name_development` in postgres
 
-	***Check: navigate to app >> controllers to see if your controller is there
+> Check: get into postgres with `psql`, then connect to your database with `\c app_name_development`
 
-4. Create Model: rails generate model modelName field1Name:dataType field2Name:dataType…etc.
+3. Create controller: `$ rails g controller controllerNames`
 --
+> a. make sure the controller name is plural to follow rails conventions
+
+> Check: navigate to `app/controllers` to see if your controller is there
+
+4. Create Model: `$ rails g model modelName field1Name:dataType field2Name:dataType`
+--
+> can add as many key value paris as youd like!
+
 		a. Model names are singular
 		b. If creating a foreign key, do “modelName:references”
 
-	***Check: Navigate to db >> migrate to see if there is a file, click on it to see if it contains your schema
+> Check: Navigate to `db/migrate` to see if there is a file, click on it to see if it contains your schema
 
-5. Migrate your database: rake db:migrate
+5. Migrate your database: `$ rake db:migrate`
 --
 
-	***Check: Navigate to db >> schema.rb to see if your 	schema was loaded in
+> Check: Navigate to `db/schema.rb` to see if your schema was loaded in
 
-— Repeat steps 3-5 as many times as necessary — 
+— Repeat steps 3-5 as many times as necessary —
 
 6. Create seed data: An example below:
 --
-	
-	House.destroy_all
-	Character.destroy_all
 
-	house1 = House.create(name: "Targaryen")
-	house2 = House.create(name: "Zehnder")
+```ruby
+House.destroy_all
+House.destroy_all
+Character.destroy_all
+Character.destroy_all
 
-	character1 = Character.create(name: "Rob", indulgence: "whores", house: house1)
+house1 = House.create(name: "Targaryen")
+house1 = House.create(name: "Targaryen")
+house2 = House.create(name: "Zehnder")
+house2 = House.create(name: "Zehnder")
 
-	character2 = Character.create(name: "Jeff", indulgence: "whores", house: house2)
+character1 = Character.create(name: "Rob", indulgence: "whores", house: house1)
+character1 = Character.create(name: "Rob", indulgence: "whores", house: house1)
 
-	character3 = Character.create(name: "Omar", indulgence: "violence", house: house1)
+character2 = Character.create(name: "Jeff", indulgence: "whores", house: house2)
+character2 = Character.create(name: "Jeff", indulgence: "whores", house: house2)
 
-	character4 = Character.create(name: "Jimmy", indulgence: "alcohol", house: house2)
-	
+character3 = Character.create(name: "Omar", indulgence: "violence", house: house1)
+character3 = Character.create(name: "Omar", indulgence: "violence", house: house1)
 
-	*** Make sure that you do ClassName.create not Class name.new in the seed data or else it won’t work.
+character4 = Character.create(name: "Jimmy", indulgence: "alcohol", house: house2)
+character4 = Character.create(name: "Jimmy", indulgence: "alcohol", house: house2)
+```
 
-7. Seed your database: rake db:seed
---
-	
-	***Check: open postgres, then open your database. do a “Select * from table_name;” to see if your data made it over. 
+>  Make sure that you do ClassName.create not Class name.new in the seed data or else it won’t work.
 
-8. Modify Your Routes to Reflect Your Controllers: Add the following for your routes file…
---
-
-	resources :controllerName (make sure it ends with an “s” for convention purposes. Repeat as necessary for each of your models.
-
-	***Check: add “root “modelname#index” to have the home page default to this index view for this controller >> Helps to set a location to create a test page in the next step
-
-9. Create Home Page View: Make a hello world view for the index page by modifying the index.html.erb view under your first model’s views folder
+7. Seed your database: `$ rake db:seed`
 --
 
-10. View your routes: Run the “rake routes” command in terminal
+> Check: open postgres, then open your database. do a `SELECT * FROM table_name;` to see if your data made it over.
+
+8. Modify Your Routes to Reflect Your Controllers: Add the following for your routes file found at `config/routes.rb`
 --
 
-	— New Page Process —
+```ruby
+# make sure it ends with an “s” for convention purposes. Repeat as necessary for each of your models.
+resources :modelName
 
-	1. Create view under the views >> controllerName folder using “viewName.html.erb” as the name of the document
+# The home page will default to the index view for this model
+root "modelName#index"
+```
+> Root route will help to set a location to create a test page in the next step
 
-	2. Create the action inside the controller file >> 
-		def whatever
-			“stuff to send into the view”
-		end
+9. Create Home Page View: Make a hello world view for the index page by modifying the file `app/views/modelname/index.html.erb`  
+--
 
-	3. Modify the view, so that it reflects whatever you want it to return in the HTML for that particular route
+10. View your routes: Run the `$ rake routes` command in terminal. You should always reference this!
+--
 
-	— End New Page Process —
+## New Page Process
+1. Create view under the `views/modelName` folder using `viewName.html.erb` as the name of the document
+
+2. Create the action inside the controller file
+```ruby
+# instead of action it would be something like: index, show, new, etc..
+def action
+	“stuff to send into the view”
+end
+```
+
+3. Modify the view, so that it reflects whatever you want it to return in the HTML for that particular route
+
+
 
 
 11. Create a home page for your index view using the new page process: Modify the page to however you like to display all the options
@@ -111,13 +131,13 @@ Rails App Checklist
 
 	— New Page Process —
 
-	Identify desired path: 
+	Identify desired path:
 
 	house GET    /houses/:id(.:format)          houses#show
 
 	1. Create view under the views >> controllerName folder using “show.html.erb” as the name of the document
 
-	2. Create the action inside the controller file >> 
+	2. Create the action inside the controller file >>
 		def show
 			code goes here
 		end
@@ -142,7 +162,7 @@ Rails App Checklist
 
 	1. Create view under the views >> controllerName folder using “edit.html.erb” as the name of the document
 
-	2. Create the action inside the controller file >> 
+	2. Create the action inside the controller file >>
 		def edit
 			code goes here
 		end
@@ -153,7 +173,7 @@ Rails App Checklist
 
 	*** Special step for any view requiring a form. If you know that you can use this form more than once, you can create a form reference page.
 
-	Add form content (example below) 
+	Add form content (example below)
 
 		<%= form_for @house do |f| %>
 
@@ -168,7 +188,7 @@ Rails App Checklist
 
 		<% end %>
 
-	Add the reference tag in the view which you would like to connect to the reference form: 
+	Add the reference tag in the view which you would like to connect to the reference form:
 
 	<%= render 'form' %>
 
@@ -189,7 +209,7 @@ Rails App Checklist
 
 	*Note: You need to add the private method because only the controller should be able to modify data
 
-14. Create the Create Page: 
+14. Create the Create Page:
 --
 
 	— New Page Process —
@@ -200,7 +220,7 @@ Rails App Checklist
 
 	1. Create view under the views >> controllerName folder using “new.html.erb” as the name of the document
 
-	2. Create the action inside the controller file >> 
+	2. Create the action inside the controller file >>
 		def new
 			code goes here
 		end
@@ -220,7 +240,7 @@ Rails App Checklist
 
 	1. This step is not necessary here, you will redirect instead Create view under the views >> controllerName folder using “new.html.erb” as the name of the document
 
-	2. Create the action inside the controller file >> 
+	2. Create the action inside the controller file >>
 		def create
 			code goes here
 		end
